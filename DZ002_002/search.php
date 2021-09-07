@@ -19,16 +19,19 @@ tr:nth-child(even) {background-color: #000000;}
 <body>
 
 <?php
-$s = $_REQUEST["s"];
-$hint = "";
+if(isset($_REQUEST['s'])){
+  $s = $_REQUEST['s']; 
+}else{
+  $s = "Name not set in GET Method";
+}
 
 // Spajanje s bazom
 $connection = mysqli_connect('localhost','root','','clinic');
 
-if (!$connection) {
-    error_log("Failed to connect to MySQL: " . mysqli_error($connection));
-    die('Internal server error');
-}
+//if (!$connection) {
+//    error_log("Failed to connect to MySQL: " . mysqli_error($connection));
+//    die('Internal server error');
+//}
 
 // Odabir baze
 $db_select = mysqli_select_db($connection, 'clinic');
