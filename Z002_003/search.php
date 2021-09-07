@@ -19,6 +19,11 @@ tr:nth-child(even) {background-color: #000000;}
 <body>
 
 <?php
+if(isset($_REQUEST['s'])){
+  $s = $_REQUEST['s']; 
+}else{
+  $s = "Name not set in GET Method";
+}
 // Spajanje s bazom
 $connection = mysqli_connect('localhost','root','','clinic');
 
@@ -26,15 +31,6 @@ $connection = mysqli_connect('localhost','root','','clinic');
 //    error_log("Failed to connect to MySQL: " . mysqli_error($connection));
 //    die('Internal server error');
 //}
-
-
-if(isset($_POST['s'])){
-  $s = $_POST['s']; 
-}else{
-  $s = "Name not set in GET Method";
-}
-
-
 
 // Odabir baze
 $db_select = mysqli_select_db($connection, 'clinic');
@@ -47,6 +43,8 @@ $sql="SELECT * FROM `patients` WHERE `first_name` LIKE  '%$s%' OR `last_name` LI
 
 $response = $connection->query($sql)or die("Querry failed");
 
+if(mysqli_num_rows($response) > 0)
+{
 echo "<table>
 <tr>
 <th>First name</th>
@@ -60,7 +58,7 @@ while ($myrow=mysqli_fetch_row($response)){
 		}
 
 echo "</table>";
-
+}
 }
 ?>
 </body>

@@ -5,39 +5,28 @@
 <link rel="stylesheet" href="style.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <title>RNWA - DZ 2</title>
 
 <script>
 	$(document).ready(function(){
-		load_data();
-		function load_data(s)
-		{
-			$.ajax({
-				url:"search.php",
-				method:"post",
-				data:{s:s},
-				success:function(data)
-				{
-					$('#result').html(data);
-				}
-			});
-		}
-		
-		$('#search_text').keyup(function(){
-			var search = $(this).val();
-			if(search != '')
-			{
-				load_data(search);
-			}
-			else
-			{
-				load_data();			
-			}
-		});
-	});
-	</script>
+		  
+		  let search_text = $('#search_text')
 	
+		  search_text.keyup(async function(){
+			let str = $('#search_text').val()
+			if(str.length === 0)
+			{
+			  $('#txtHint').html('')
+			}else{
+			  let {data} =  await axios.get("search.php", {params: {s: str}});
+			  $('#txtHint').html(data);
+			}
+		  });
+		});
+	</script>
+
 </head>
 <body>
 
