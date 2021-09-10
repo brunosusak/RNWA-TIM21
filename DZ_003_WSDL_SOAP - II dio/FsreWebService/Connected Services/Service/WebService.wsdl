@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="konverzijaBAMToEUR">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="bam" type="s:float" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="konverzijaBAMToEURResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="konverzijaBAMToEURResult" type="s:float" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="konverzijaEURToBAM">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="eur" type="s:float" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="konverzijaEURToBAMResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="konverzijaEURToBAMResult" type="s:float" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCustomerByCustomerNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="customerNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCustomerByCustomerNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getCustomerByCustomerNumberResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getEmployeeByEmployeeNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="employeeNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getEmployeeByEmployeeNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getEmployeeByEmployeeNumberResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="konverzijaBAMToEURSoapIn">
+    <wsdl:part name="parameters" element="tns:konverzijaBAMToEUR" />
+  </wsdl:message>
+  <wsdl:message name="konverzijaBAMToEURSoapOut">
+    <wsdl:part name="parameters" element="tns:konverzijaBAMToEURResponse" />
+  </wsdl:message>
+  <wsdl:message name="konverzijaEURToBAMSoapIn">
+    <wsdl:part name="parameters" element="tns:konverzijaEURToBAM" />
+  </wsdl:message>
+  <wsdl:message name="konverzijaEURToBAMSoapOut">
+    <wsdl:part name="parameters" element="tns:konverzijaEURToBAMResponse" />
+  </wsdl:message>
+  <wsdl:message name="getCustomerByCustomerNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:getCustomerByCustomerNumber" />
+  </wsdl:message>
+  <wsdl:message name="getCustomerByCustomerNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:getCustomerByCustomerNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="getEmployeeByEmployeeNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:getEmployeeByEmployeeNumber" />
+  </wsdl:message>
+  <wsdl:message name="getEmployeeByEmployeeNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:getEmployeeByEmployeeNumberResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebServis1Soap">
+    <wsdl:operation name="konverzijaBAMToEUR">
+      <wsdl:input message="tns:konverzijaBAMToEURSoapIn" />
+      <wsdl:output message="tns:konverzijaBAMToEURSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="konverzijaEURToBAM">
+      <wsdl:input message="tns:konverzijaEURToBAMSoapIn" />
+      <wsdl:output message="tns:konverzijaEURToBAMSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getCustomerByCustomerNumber">
+      <wsdl:input message="tns:getCustomerByCustomerNumberSoapIn" />
+      <wsdl:output message="tns:getCustomerByCustomerNumberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getEmployeeByEmployeeNumber">
+      <wsdl:input message="tns:getEmployeeByEmployeeNumberSoapIn" />
+      <wsdl:output message="tns:getEmployeeByEmployeeNumberSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServis1Soap" type="tns:WebServis1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="konverzijaBAMToEUR">
+      <soap:operation soapAction="http://tempuri.org/konverzijaBAMToEUR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="konverzijaEURToBAM">
+      <soap:operation soapAction="http://tempuri.org/konverzijaEURToBAM" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCustomerByCustomerNumber">
+      <soap:operation soapAction="http://tempuri.org/getCustomerByCustomerNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEmployeeByEmployeeNumber">
+      <soap:operation soapAction="http://tempuri.org/getEmployeeByEmployeeNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServis1Soap12" type="tns:WebServis1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="konverzijaBAMToEUR">
+      <soap12:operation soapAction="http://tempuri.org/konverzijaBAMToEUR" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="konverzijaEURToBAM">
+      <soap12:operation soapAction="http://tempuri.org/konverzijaEURToBAM" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCustomerByCustomerNumber">
+      <soap12:operation soapAction="http://tempuri.org/getCustomerByCustomerNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEmployeeByEmployeeNumber">
+      <soap12:operation soapAction="http://tempuri.org/getEmployeeByEmployeeNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebServis1">
+    <wsdl:port name="WebServis1Soap" binding="tns:WebServis1Soap">
+      <soap:address location="https://localhost:44326/WebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServis1Soap12" binding="tns:WebServis1Soap12">
+      <soap12:address location="https://localhost:44326/WebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
