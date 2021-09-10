@@ -19,6 +19,9 @@ tr:nth-child(even) {background-color: #000000;}
 <body>
 
 <?php
+$s = $_REQUEST["s"];
+$hint = "";
+
 // Spajanje s bazom
 $connection = mysqli_connect('localhost','root','','clinic');
 
@@ -26,14 +29,6 @@ $connection = mysqli_connect('localhost','root','','clinic');
 //    error_log("Failed to connect to MySQL: " . mysqli_error($connection));
 //    die('Internal server error');
 //}
-
-
-if(isset($_POST['s'])){
-  $s = $_POST['s']; 
-}else{
-  $s = "Name not set in GET Method";
-}
-
 
 
 // Odabir baze

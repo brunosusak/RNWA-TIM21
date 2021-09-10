@@ -43,7 +43,8 @@ if (!$db_select) {
 $sql="SELECT * FROM `patients` WHERE `first_name` LIKE  '%$s%' OR `last_name` LIKE  '%$s%'";
 
 $response = $connection->query($sql)or die("Querry failed");
-
+if(mysqli_num_rows($response) > 0)
+{
 echo "<table>
 <tr>
 <th>First name</th>
@@ -57,7 +58,7 @@ while ($myrow=mysqli_fetch_row($response)){
 		}
 
 echo "</table>";
-
+}
 }
 ?>
 </body>

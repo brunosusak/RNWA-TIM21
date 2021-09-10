@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<definitions name="HelloWorld" targetNamespace="urn:HelloWorld" xmlns:tns="urn:HelloWorld"  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:Test">
+      <xsd:element name="dataType" type="xsd:integer" />
+	  <xsd:element name="cETBResponse" type="xsd:string" />	 	  
+	</xsd:schema>			
+  </types>
+  
+  <message name="cETB">
+    <part name="yourValue" type="tns:dataType" />
+  </message>
+  
+  <message name="cETBResponse">
+    <part name="return" type="tns:dataType" />
+  </message>  
+  
+  <portType name="ConvertPort">
+    <operation name="cETB">
+	  <input message="tns:cETB" />
+	  <output message="tns:cETBResponse" />
+	</operation>
+  </portType>
+  
+  <binding name="bind" type="tns:ConvertPort">
+	  <operation name="cETB">
+	    <soap:operation soapAction="urn:ConvertAction" />
+		<input>
+		  <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />		  
+		</input>
+		<output>
+		  <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />		  
+		</output>
+	  </operation>
+  </binding>
+  
+  
+  
+  <service name="Service">
+    <port name="ConvertPort" binding="tns:bind">
+	  <soap:address location="http://localhost/soap/cETB_server.php"/>
+	</port>
+  </service>
+    
+</definitions>
