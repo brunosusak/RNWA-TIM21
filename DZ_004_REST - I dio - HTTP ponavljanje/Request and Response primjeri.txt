@@ -1,0 +1,119 @@
+##NOWSDL REQUEST
+<?php 
+$conn = mysqli_connect("localhost", "root", "", "clinic") or die("Connection failed: " . mysqli_connect_error());
+if (mysqli_connect_errno()) {
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
+}
+
+if(isset($_GET['officecode'])) {	
+	$officecode = $_GET['officecode']; 
+	$sql_query = "select lastName, firstName, email from employees where officeCode = $officecode";
+	$response = mysqli_query($conn, $sql_query) or die("database error:". mysqli_error($conn));	
+	$rows = array();
+	while($r = mysqli_fetch_assoc($response)) {
+    $rows[] = $r;
+	}
+	print json_encode($rows);	
+}
+?>	
+
+##NOWSDL REPONSE
+[{"lastName":"Jokić","firstName":"Nikola","email":"nikola@gmail.com"},{"lastName":"James","firstName":"LeBron","email":"lebron@gmail.com"},
+{"lastName":"Ingram","firstName":"Brandon","email":"brandon@gmail.com"}] 
+
+
+##WSDL REQUEST
+    public class WebServis1 : System.Web.Services.WebService
+    {
+
+        public static DataTable SendQuerry(string querry)
+        {
+            string connString = "SERVER=localhost" + ";" +
+                "DATABASE=clinic;" +
+                "UID=root;" +
+                "PASSWORD=;";
+
+            MySqlConnection cnMySQL = new MySqlConnection(connString);
+            MySqlCommand cmdMySQL = cnMySQL.CreateCommand();
+            MySqlDataReader reader;
+
+            cmdMySQL.CommandText = querry;
+            cnMySQL.Open();
+            reader = cmdMySQL.ExecuteReader();
+
+            DataTable dt = new DataTable();
+            dt.Load(reader);
+            cnMySQL.Close();
+
+            return dt;
+
+        }
+
+
+        [System.Web.Services.WebMethod]
+        public DataTable getEmployeesByOfficeCode(string officeCode)
+        {
+            string querry = "select lastName, firstName, email from employees where officeCode =" + officeCode;
+            return SendQuerry(querry);
+        }
+
+    }
+}
+
+##WSDL REPONSE
+<DataTable>
+<xs:schema id="NewDataSet">
+<xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="employees" msdata:UseCurrentLocale="true">
+<xs:complexType>
+<xs:choice minOccurs="0" maxOccurs="unbounded">
+<xs:element name="employees">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="lastName">
+<xs:simpleType>
+</xs:simpleType>
+</xs:element>
+<xs:element name="firstName">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="50"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="email">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:maxLength value="100"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:schema>
+<diffgr:diffgram>
+<DocumentElement>
+<employees diffgr:id="employees6" msdata:rowOrder="0">
+<lastName>Jokić</lastName>
+<firstName>Nikola</firstName>
+<email>nikola@gmail.com</email>
+</employees>
+<employees diffgr:id="employees4" msdata:rowOrder="1">
+<lastName>James</lastName>
+<firstName>Lebron</firstName>
+<email>lebron@gmail.com</email>
+</employees>
+<employees diffgr:id="employees3" msdata:rowOrder="2">
+<lastName>Ingram</lastName>
+<firstName>Brandon</firstName>
+<email>brandon@gmail.com</email>
+</employees>
+
+</DocumentElement>
+</diffgr:diffgram>
+</DataTable>
+
