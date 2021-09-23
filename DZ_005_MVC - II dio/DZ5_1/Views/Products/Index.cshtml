@@ -1,0 +1,77 @@
+﻿@model IEnumerable<DZ5_1.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductLine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductScale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductVendor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantityInStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BuyPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Msrp)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductLine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductScale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductVendor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityInStock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuyPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Msrp)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProductCode">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProductCode">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProductCode">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

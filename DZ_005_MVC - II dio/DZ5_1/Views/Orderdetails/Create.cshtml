@@ -1,0 +1,51 @@
+﻿@model DZ5_1.Models.Orderdetail
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Orderdetail</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="OrderNumber" class="control-label"></label>
+                <select asp-for="OrderNumber" class ="form-control" asp-items="ViewBag.OrderNumber"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductCode" class="control-label"></label>
+                <select asp-for="ProductCode" class ="form-control" asp-items="ViewBag.ProductCode"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="QuantityOrdered" class="control-label"></label>
+                <input asp-for="QuantityOrdered" class="form-control" />
+                <span asp-validation-for="QuantityOrdered" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PriceEach" class="control-label"></label>
+                <input asp-for="PriceEach" class="form-control" />
+                <span asp-validation-for="PriceEach" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderLineNumber" class="control-label"></label>
+                <input asp-for="OrderLineNumber" class="form-control" />
+                <span asp-validation-for="OrderLineNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
